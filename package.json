@@ -3,20 +3,35 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "yarn storybook | react-native start",
+    "start-reset": "yarn storybook | react-native start --resetCache",
     "test": "jest",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "prettier": "prettier all --write \"src/**/*.{ts,tsx}\"",
-    "tsc": "tsc --noEmit --skipLibCheck"
+    "tsc": "tsc --noEmit --skipLibCheck",
+    "prestorybook": "rnstl",
+    "storybook": "storybook start -p 7007 -c src/core/storybook"
+  },
+  "config": {
+    "react-native-storybook-loader": {
+      "searchDir": [
+        "./src"
+      ],
+      "pattern": "**/*.stories.tsx",
+      "outputFile": "./src/core/storybook/storyLoader.js"
+    }
   },
   "dependencies": {
     "react": "16.8.3",
-    "react-native": "0.59.1"
+    "react-native": "0.59.1",
+    "react-navigation": "^3.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/preset-typescript": "^7.3.3",
     "@babel/runtime": "^7.3.4",
+    "@storybook/addon-options": "^5.0.2",
+    "@storybook/react-native": "^4.1.14",
     "@types/jest": "^24.0.11",
     "@types/react": "^16.8.8",
     "@types/react-native": "^0.57.40",
@@ -29,6 +44,7 @@
     "lint-staged": "^8.1.5",
     "metro-react-native-babel-preset": "^0.53.1",
     "prettier": "1.16.4",
+    "react-native-storybook-loader": "^1.8.0",
     "react-native-typescript-transformer": "^1.2.12",
     "react-test-renderer": "16.8.3",
     "ts-jest": "^24.0.0",
