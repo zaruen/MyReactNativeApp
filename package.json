@@ -6,7 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "prettier": "prettier all --write \"src/**/*.{ts,tsx}\""
+    "prettier": "prettier all --write \"src/**/*.{ts,tsx}\"",
+    "tsc": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
     "react": "16.8.3",
