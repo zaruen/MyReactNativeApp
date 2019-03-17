@@ -1,12 +1,8 @@
 import React from 'react';
 import StorybookUIRoot from '../storybook/Storybook';
-import {
-  createStackNavigator,
-  createAppContainer,
-  createSwitchNavigator,
-} from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import WelcomePage from './WelcomePage';
-import { Button } from 'react-native';
+// import { Button } from 'react-native';
 
 class RootNavigator extends React.Component {
   render() {
