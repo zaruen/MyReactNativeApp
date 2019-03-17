@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["es2015"],
+    "module": "commonjs",
+    "jsx": "react-native",
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": false,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "paths": {
+      "@core/assets/*": ["src/core/assets/*"],
+      "@core/components/*": ["src/core/components/*"],
+      "@core/lib/*": ["src/core/lib/*"],
+      "@core/pages/*": ["src/core/pages/*"],
+      "@core/__mocks__/*": ["src/core/__mocks__/*"],
+      "@core/storybook/*": ["src/core/storybook/*"],
+    },
+    "typeRoots": ["node_modules/@types"],
+    "noUnusedLocals": true
+  }
+}

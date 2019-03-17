@@ -1,0 +1,5 @@
+*.pbxproj -text
+
+# compare .pbxproj files as binary and always merge as union
+# https://robots.thoughtbot.com/xcode-and-git-bridging-the-gap
+*.pbxproj binary merge=union 
