@@ -1,32 +1,56 @@
 import React from 'react';
 import StorybookUIRoot from '../storybook/Storybook';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import WelcomePage from './WelcomePage';
-// import { Button } from 'react-native';
+import {
+  createAppContainer,
+  createSwitchNavigator,
+  createStackNavigator,
+} from 'react-navigation';
+import UsersPage from './UsersPage';
+import ProfilePage from './ProfilePage';
+import { Button } from 'react-native';
+import AddressPage from './AddressPage';
+import AlbumsPage from './AlbumsPage';
+import PostsPage from './PostsPage';
+import TodosPage from './TodosPage';
 
 class RootNavigator extends React.Component {
   render() {
     // Storybook
-    // const StorybookPage = createStackNavigator({
-    //   StorybookUIRoot: {
-    //     screen: StorybookUIRoot,
-    //     navigationOptions: () => ({
-    //       headerStyle: {
-    //         backgroundColor: '#888',
-    //       },
-    //       headerLeft: <Button title="Left" onPress={() => console.log('left')}/>,
-    //       headerRight: <Button title="Right" onPress={() => console.log('right')}/>,
-    //     }),
-    //   },
-    // });
+    const StorybookPage = createStackNavigator({
+      StorybookUIRoot: {
+        screen: StorybookUIRoot,
+        navigationOptions: ({ navigation }) => ({
+          headerLeft: (
+            <Button
+              title="Back to the app"
+              onPress={() => navigation.navigate('Users')}
+            />
+          ),
+        }),
+      },
+    });
+
+    const MainNavigator = createStackNavigator(
+      {
+        Users: { screen: UsersPage },
+        Profile: { screen: ProfilePage },
+        Address: { screen: AddressPage },
+        Albums: { screen: AlbumsPage },
+        Posts: { screen: PostsPage },
+        Todos: { screen: TodosPage },
+      },
+      {
+        initialRouteName: 'Users',
+      },
+    );
 
     const SwitchNavigator = createSwitchNavigator(
       {
-        StorybookUIRoot,
-        WelcomePage,
+        StorybookPage,
+        MainNavigator,
       },
       {
-        initialRouteName: 'WelcomePage',
+        initialRouteName: 'MainNavigator',
       },
     );
 

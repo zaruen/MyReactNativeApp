@@ -12,6 +12,7 @@
     "noImplicitAny": false,
     "resolveJsonModule": true,
     "paths": {
+      "*": ["types/*"],
       "@core/assets/*": ["src/core/assets/*"],
       "@core/components/*": ["src/core/components/*"],
       "@core/lib/*": ["src/core/lib/*"],
