@@ -6,6 +6,7 @@ import Page from '@core/components/atoms/Page';
 import { User } from './UsersPage';
 import Loading from '@core/components/atoms/Loading';
 import ButtonCard from '@core/components/molecules/ButtonCard';
+import { BASE_URL } from '../constants';
 
 export interface Album {
   userId: number;
@@ -32,7 +33,7 @@ class AlbumsPage extends React.Component<NavigationInjectedProps, State> {
 
   async componentWillMount() {
     const userId = this.props.navigation.getParam('user').id;
-    const url = `https://jsonplaceholder.typicode.com/albums?userId=${userId}`;
+    const url = `${BASE_URL}albums?userId=${userId}`;
     const albums = await Axios({
       method: 'GET',
       url,

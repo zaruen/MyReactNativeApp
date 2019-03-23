@@ -5,15 +5,15 @@
 // https://github.com/elderfo/react-native-storybook-loader.git
 
 function loadStories() {
-  require('../components/Hello.stories');
   require('../components/atoms/Card.stories');
+  require('../components/atoms/CardContent.stories');
   require('../components/molecules/ButtonCard.stories');
   
 }
 
 const stories = [
-  '../components/Hello.stories',
   '../components/atoms/Card.stories',
+  '../components/atoms/CardContent.stories',
   '../components/molecules/ButtonCard.stories',
   
 ];

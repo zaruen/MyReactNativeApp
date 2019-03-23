@@ -1,10 +1,12 @@
 import React from 'react';
-import { TouchableOpacity, FlatList, Text } from 'react-native';
+import { FlatList, Text, StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import Page from '@core/components/atoms/Page';
 import Axios from 'axios';
 import Loading from '@core/components/atoms/Loading';
 import { User } from './UsersPage';
+import { BASE_URL, COLORS, FONT_SIZES } from '../constants';
+import ListHeader from '@core/components/atoms/ListHeader';
 
 interface State {
   post: Post;
@@ -41,9 +43,7 @@ class PostPage extends React.Component<NavigationInjectedProps, State> {
   };
 
   async componentWillMount() {
-    const url = `https://jsonplaceholder.typicode.com/comments?postId=${
-      this.state.post.id
-    }`;
+    const url = `${BASE_URL}comments?postId=${this.state.post.id}`;
 
     const result = await Axios({
       method: 'GET',
@@ -57,27 +57,81 @@ class PostPage extends React.Component<NavigationInjectedProps, State> {
 
   renderItem = ({ item, index }) => {
     return (
-      <TouchableOpacity onPress={() => {}} style={{ flex: 1 }}>
-        <Text>{item.body}</Text>
-      </TouchableOpacity>
+      <View style={styles.commentContainer}>
+        <Text style={[styles.comment, { fontWeight: 'bold' }]}>
+          {item.name}
+        </Text>
+        <Text style={styles.comment}>{item.body}</Text>
+        <View style={styles.commentAuthorContainer}>
+          <Text style={styles.commentAuthor}>{item.email}</Text>
+        </View>
+      </View>
     );
   };
 
   render() {
     return (
       <Page>
-        {this.state.comments.length > 0 ? (
-          <FlatList
-            data={this.state.comments}
-            keyExtractor={(item) => `${item.id}`}
-            renderItem={this.renderItem}
-          />
-        ) : (
-          <Loading />
-        )}
+        <View style={styles.container}>
+          <View
+            style={{ alignItems: 'center', marginBottom: 20, marginTop: 20 }}
+          >
+            <Text style={styles.title}>{this.state.post.title}</Text>
+          </View>
+          <Text style={styles.body}>{this.state.post.body}</Text>
+
+          {this.state.comments.length > 0 ? (
+            <>
+              <ListHeader title="Comments" />
+              <FlatList
+                data={this.state.comments}
+                keyExtractor={(item) => `${item.id}`}
+                renderItem={this.renderItem}
+              />
+            </>
+          ) : (
+            <Loading />
+          )}
+        </View>
       </Page>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: FONT_SIZES.smallTitle,
+    color: COLORS.textSecondary,
+  },
+  body: {
+    fontSize: FONT_SIZES.normal,
+    color: COLORS.textPrimary,
+  },
+  container: {
+    flex: 1,
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  commentContainer: {
+    flex: 1,
+    borderRadius: 10,
+    backgroundColor: COLORS.darkBackground,
+    padding: 20,
+    marginBottom: 20,
+  },
+  comment: {
+    fontSize: FONT_SIZES.small,
+    color: COLORS.textSecondary,
+  },
+  commentAuthorContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginTop: 8,
+  },
+  commentAuthor: {
+    fontSize: FONT_SIZES.extraSmall,
+    color: COLORS.pink,
+  },
+});
 
 export default PostPage;

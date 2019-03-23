@@ -4,9 +4,10 @@ import { NavigationInjectedProps } from 'react-navigation';
 import Page from '@core/components/atoms/Page';
 import Card from '@core/components/atoms/Card';
 import CardContent from '@core/components/atoms/CardContent';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import ButtonCard from '@core/components/molecules/ButtonCard';
 import { FONT_SIZES, COLORS } from '../constants';
+import CardHeader from '@core/components/atoms/CardHeader';
 
 class ProfilePage extends React.Component<NavigationInjectedProps> {
   static navigationOptions = ({ navigation }) => {
@@ -20,24 +21,18 @@ class ProfilePage extends React.Component<NavigationInjectedProps> {
     return (
       <Page>
         <Card height={300}>
-          <View style={{ flex: 1, paddingBottom: 30 }}>
-            <View style={{ flex: 1, alignItems: 'center', marginBottom: 20 }}>
-              <Text
-                style={{
-                  fontSize: FONT_SIZES.title,
-                  color: COLORS.textPrimary,
-                  fontWeight: '500',
-                  marginTop: 20,
-                  marginBottom: 8,
-                }}
-              >
-                {user.name}
-              </Text>
-              <Text style={{ fontSize: 15, color: COLORS.pink }}>
-                {user.email}
-              </Text>
+          <View style={{ flex: 1 }}>
+            <View
+              style={{
+                flex: 1,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <CardHeader text={user.name} />
+              <Text style={styles.email}>{user.email}</Text>
             </View>
-            <View style={{ flex: 1, paddingLeft: 50, paddingRight: 50 }}>
+            <View style={{ flex: 1 }}>
               <CardContent title={user.phone} text="Phone" center />
               <CardContent title={user.website} text="Website" center />
             </View>
@@ -70,5 +65,12 @@ class ProfilePage extends React.Component<NavigationInjectedProps> {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  email: {
+    fontSize: FONT_SIZES.medium,
+    color: COLORS.pink,
+  },
+});
 
 export default ProfilePage;

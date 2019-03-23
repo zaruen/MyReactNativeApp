@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import ButtonCard from './ButtonCard';
 
-storiesOf('Components|Molecules/Card', module).add('default', () => (
+storiesOf('Components/Molecules/Card', module).add('default', () => (
   <>
     <ButtonCard title={'Default'} onPress={() => {}} />
     <ButtonCard title={'Title'} text={'With text'} onPress={() => {}} />

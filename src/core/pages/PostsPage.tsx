@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import Axios from 'axios';
 import { NavigationInjectedProps } from 'react-navigation';
 import Page from '@core/components/atoms/Page';
@@ -7,6 +7,7 @@ import ButtonCard from '@core/components/molecules/ButtonCard';
 import { User } from './UsersPage';
 import { Post } from './PostPage';
 import Loading from '@core/components/atoms/Loading';
+import { BASE_URL } from '../constants';
 
 interface State {
   user: User;
@@ -26,9 +27,7 @@ class PostsPage extends React.Component<NavigationInjectedProps, State> {
   };
 
   async componentWillMount() {
-    const url = `https://jsonplaceholder.typicode.com/posts?userId=${
-      this.state.user.id
-    }`;
+    const url = `${BASE_URL}posts?userId=${this.state.user.id}`;
     const result = await Axios({
       method: 'GET',
       url,
@@ -63,6 +62,7 @@ class PostsPage extends React.Component<NavigationInjectedProps, State> {
             data={this.state.posts}
             keyExtractor={(item) => `${item.id}`}
             renderItem={this.renderItem}
+            style={styles.listContainer}
           />
         ) : (
           <Loading />
@@ -71,5 +71,11 @@ class PostsPage extends React.Component<NavigationInjectedProps, State> {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  listContainer: {
+    paddingTop: 20,
+  },
+});
 
 export default PostsPage;

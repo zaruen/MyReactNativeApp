@@ -14,6 +14,7 @@ import PostsPage from './PostsPage';
 import TodosPage from './TodosPage';
 import AlbumPage from './AlbumPage';
 import PostPage from './PostPage';
+import { COLORS } from '../constants';
 
 class RootNavigator extends React.Component {
   render() {
@@ -45,6 +46,18 @@ class RootNavigator extends React.Component {
       },
       {
         initialRouteName: 'Users',
+        defaultNavigationOptions: {
+          headerStyle: {
+            backgroundColor: COLORS.darkBackground,
+          },
+          headerTitleStyle: {
+            color: COLORS.white,
+          },
+          headerBackTitleStyle: {
+            color: COLORS.pink,
+          },
+          headerTintColor: COLORS.pink,
+        },
       },
     );
 

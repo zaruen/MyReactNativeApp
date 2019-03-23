@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, FlatList, Button } from 'react-native';
+import { StyleSheet, FlatList, Button, View, StatusBar } from 'react-native';
 import Axios from 'axios';
 import { NavigationInjectedProps } from 'react-navigation';
 import Page from '@core/components/atoms/Page';
 import ButtonCard from '@core/components/molecules/ButtonCard';
 import Loading from '@core/components/atoms/Loading';
+import { BASE_URL, COLORS } from '../constants';
 
 interface State {
   users: User[];
@@ -49,13 +50,14 @@ class UsersPage extends React.Component<NavigationInjectedProps, State> {
         <Button
           title="Storybook"
           onPress={() => navigation.navigate('StorybookPage')}
+          color={COLORS.pink}
         />
       ),
     };
   };
 
   async componentWillMount() {
-    const url = 'https://jsonplaceholder.typicode.com/users';
+    const url = `${BASE_URL}users`;
     const users = await Axios({
       method: 'GET',
       url,
@@ -81,18 +83,28 @@ class UsersPage extends React.Component<NavigationInjectedProps, State> {
 
   render() {
     return (
-      <Page>
-        {this.state.users.length > 0 ? (
-          <FlatList
-            data={this.state.users}
-            keyExtractor={(item) => `${item.id}`}
-            renderItem={this.renderItem}
-            style={styles.listContainer}
-          />
-        ) : (
-          <Loading />
-        )}
-      </Page>
+      <>
+        <View
+          style={{
+            backgroundColor: '#00EBB1',
+            // height: Platform.OS === 'ios' ? 50 : StatusBar.currentHeight,
+          }}
+        >
+          <StatusBar backgroundColor={'#00EBB1'} barStyle="dark-content" />
+        </View>
+        <Page>
+          {this.state.users.length > 0 ? (
+            <FlatList
+              data={this.state.users}
+              keyExtractor={(item) => `${item.id}`}
+              renderItem={this.renderItem}
+              style={styles.listContainer}
+            />
+          ) : (
+            <Loading />
+          )}
+        </Page>
+      </>
     );
   }
 }

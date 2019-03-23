@@ -1,10 +1,12 @@
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import Card from './Card';
 
-storiesOf('Components|Atoms/Card', module).add('default', () => (
+storiesOf('Components/Atoms/Card', module).add('default', () => (
   <Card>
-    <Text>COUCOU</Text>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{ color: '#fff' }}>This is a card</Text>
+    </View>
   </Card>
 ));

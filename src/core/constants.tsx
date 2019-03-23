@@ -7,10 +7,16 @@ export const COLORS = {
   pink: '#fc75b0',
   textPrimary: '#bcc3dc',
   textSecondary: '#7e88ab',
+  background: '#3e486c',
+  darkBackground: '#252b41',
+  white: '#fff',
 };
 
 export const FONT_SIZES = {
-  normal: 18,
+  extraSmall: 10,
   small: 13,
+  medium: 15,
+  normal: 18,
+  smallTitle: 22,
   title: 30,
 };
