@@ -7,12 +7,14 @@
 function loadStories() {
   require('../components/Hello.stories');
   require('../components/atoms/Card.stories');
+  require('../components/molecules/ButtonCard.stories');
   
 }
 
 const stories = [
   '../components/Hello.stories',
   '../components/atoms/Card.stories',
+  '../components/molecules/ButtonCard.stories',
   
 ];
 

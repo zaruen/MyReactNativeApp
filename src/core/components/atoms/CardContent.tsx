@@ -4,19 +4,17 @@ import { FONT_SIZES } from '../../constants';
 import { COLORS } from '../../constants';
 
 interface Props {
-  primary: string;
-  secondary: string;
+  title: string;
+  text: string;
   center?: boolean;
 }
 
-const CardContent: React.SFC<Props> = ({ primary, secondary, center }) => (
+const CardContent: React.SFC<Props> = ({ title, text, center }) => (
   <View
     style={[styles.container, { alignItems: center ? 'center' : 'flex-start' }]}
   >
-    <Text style={styles.primary}>{primary}</Text>
-    <Text style={styles.secondary} numberOfLines={1}>
-      {secondary}
-    </Text>
+    {title && <Text style={styles.primary}>{title}</Text>}
+    {text && <Text style={styles.secondary}>{text}</Text>}
   </View>
 );
 
@@ -31,6 +29,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    justifyContent: 'center',
+    padding: 20,
   },
 });
 

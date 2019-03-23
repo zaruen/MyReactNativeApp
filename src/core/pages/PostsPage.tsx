@@ -3,8 +3,7 @@ import { FlatList } from 'react-native';
 import Axios from 'axios';
 import { NavigationInjectedProps } from 'react-navigation';
 import Page from '@core/components/atoms/Page';
-import CardContent from '@core/components/atoms/CardContent';
-import NavigationButton from '@core/components/atoms/NavigationButton';
+import ButtonCard from '@core/components/molecules/ButtonCard';
 import { User } from './UsersPage';
 import { Post } from './PostPage';
 import Loading from '@core/components/atoms/Loading';
@@ -42,16 +41,17 @@ class PostsPage extends React.Component<NavigationInjectedProps, State> {
 
   renderItem = ({ item }) => {
     return (
-      <NavigationButton
+      <ButtonCard
         onPress={() =>
           this.props.navigation.navigate('Post', {
             user: this.state.user,
             post: item,
           })
         }
-      >
-        <CardContent primary={item.title} secondary={item.body} />
-      </NavigationButton>
+        title={item.title}
+        text={item.body}
+        card
+      />
     );
   };
 

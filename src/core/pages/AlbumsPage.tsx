@@ -5,7 +5,7 @@ import Axios from 'axios';
 import Page from '@core/components/atoms/Page';
 import { User } from './UsersPage';
 import Loading from '@core/components/atoms/Loading';
-import NavigationButton from '@core/components/atoms/NavigationButton';
+import ButtonCard from '@core/components/molecules/ButtonCard';
 
 export interface Album {
   userId: number;
@@ -45,14 +45,14 @@ class AlbumsPage extends React.Component<NavigationInjectedProps, State> {
 
   renderItem = ({ item }) => {
     return (
-      <NavigationButton
+      <ButtonCard
         onPress={() =>
           this.props.navigation.navigate('Album', {
             album: item,
             user: this.state.user,
           })
         }
-        text={item.title}
+        title={item.title}
       />
     );
   };

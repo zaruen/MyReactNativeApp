@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, FlatList, Button, Dimensions } from 'react-native';
+import { StyleSheet, FlatList, Button } from 'react-native';
 import Axios from 'axios';
 import { NavigationInjectedProps } from 'react-navigation';
 import Page from '@core/components/atoms/Page';
-import CardContent from '@core/components/atoms/CardContent';
-import NavigationButton from '@core/components/atoms/NavigationButton';
+import ButtonCard from '@core/components/molecules/ButtonCard';
+import Loading from '@core/components/atoms/Loading';
 
 interface State {
   users: User[];
@@ -60,8 +60,6 @@ class UsersPage extends React.Component<NavigationInjectedProps, State> {
       method: 'GET',
       url,
     });
-    console.log(Dimensions.get('screen').width / 3);
-    console.log(Dimensions.get('window').width);
     this.setState({
       users: users.data,
     });
@@ -73,21 +71,27 @@ class UsersPage extends React.Component<NavigationInjectedProps, State> {
 
   renderItem = ({ item }) => {
     return (
-      <NavigationButton onPress={() => item && this.onUserPressed(item)}>
-        <CardContent primary={item.username} secondary={item.name} />
-      </NavigationButton>
+      <ButtonCard
+        onPress={() => item && this.onUserPressed(item)}
+        title={item.username}
+        text={item.name}
+      />
     );
   };
 
   render() {
     return (
       <Page>
-        <FlatList
-          data={this.state.users}
-          keyExtractor={(item) => `${item.id}`}
-          renderItem={this.renderItem}
-          style={styles.listContainer}
-        />
+        {this.state.users.length > 0 ? (
+          <FlatList
+            data={this.state.users}
+            keyExtractor={(item) => `${item.id}`}
+            renderItem={this.renderItem}
+            style={styles.listContainer}
+          />
+        ) : (
+          <Loading />
+        )}
       </Page>
     );
   }

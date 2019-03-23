@@ -5,7 +5,7 @@ import Page from '@core/components/atoms/Page';
 import Card from '@core/components/atoms/Card';
 import CardContent from '@core/components/atoms/CardContent';
 import { View, Text } from 'react-native';
-import NavigationButton from '@core/components/atoms/NavigationButton';
+import ButtonCard from '@core/components/molecules/ButtonCard';
 import { FONT_SIZES, COLORS } from '../constants';
 
 class ProfilePage extends React.Component<NavigationInjectedProps> {
@@ -38,33 +38,33 @@ class ProfilePage extends React.Component<NavigationInjectedProps> {
               </Text>
             </View>
             <View style={{ flex: 1, paddingLeft: 50, paddingRight: 50 }}>
-              <CardContent primary={user.phone} secondary="Phone" center />
-              <CardContent primary={user.website} secondary="Website" center />
+              <CardContent title={user.phone} text="Phone" center />
+              <CardContent title={user.website} text="Website" center />
             </View>
           </View>
         </Card>
 
-        <NavigationButton
+        <ButtonCard
           onPress={() => this.props.navigation.navigate('Address', { user })}
           color={COLORS.pink}
-          text={'Address'}
+          title={'Address'}
         />
 
-        <NavigationButton
+        <ButtonCard
           onPress={() => this.props.navigation.navigate('Posts', { user })}
           color={COLORS.pinkPurple}
-          text={'Posts'}
+          title={'Posts'}
         />
 
-        <NavigationButton
+        <ButtonCard
           onPress={() => this.props.navigation.navigate('Albums', { user })}
           color={COLORS.purplePink}
-          text={'Albums'}
+          title={'Albums'}
         />
 
-        <NavigationButton
+        <ButtonCard
           onPress={() => this.props.navigation.navigate('Todos', { user })}
-          text={'Todos'}
+          title={'Todos'}
         />
       </Page>
     );

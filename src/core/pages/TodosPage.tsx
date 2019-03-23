@@ -4,7 +4,7 @@ import { NavigationInjectedProps } from 'react-navigation';
 import Axios from 'axios';
 import Page from '@core/components/atoms/Page';
 import { User } from './UsersPage';
-import NavigationButton from '@core/components/atoms/NavigationButton';
+import ButtonCard from '@core/components/molecules/ButtonCard';
 import { BASE_URL, COLORS } from '../constants';
 import Loading from '@core/components/atoms/Loading';
 import ListHeader from '@core/components/atoms/ListHeader';
@@ -49,9 +49,9 @@ class TodosPage extends React.Component<NavigationInjectedProps, State> {
   }
 
   renderItem = ({ item }) => (
-    <NavigationButton
-      color={item.completed ? COLORS.purple : COLORS.pink}
-      text={item.title}
+    <ButtonCard
+      color={item.completed ? 'none' : COLORS.pink}
+      title={item.title}
     />
   );
 

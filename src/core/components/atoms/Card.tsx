@@ -22,9 +22,6 @@ const Card: React.SFC<Props> = ({ children, height }) => (
 const styles = StyleSheet.create({
   gradient: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 12,
     borderRadius: 10,
     backgroundColor: '#515f81',
     shadowColor: '#000',
@@ -41,6 +38,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.58,
     shadowRadius: 16.0,
     elevation: 24,
+    marginBottom: 12,
   },
 });
 
