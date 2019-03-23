@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  Button,
-} from 'react-native';
+import { StyleSheet, FlatList, Button, Dimensions } from 'react-native';
 import Axios from 'axios';
 import { NavigationInjectedProps } from 'react-navigation';
+import Page from '@core/components/atoms/Page';
+import CardContent from '@core/components/atoms/CardContent';
+import NavigationButton from '@core/components/atoms/NavigationButton';
 
 interface State {
   users: User[];
@@ -64,7 +60,8 @@ class UsersPage extends React.Component<NavigationInjectedProps, State> {
       method: 'GET',
       url,
     });
-
+    console.log(Dimensions.get('screen').width / 3);
+    console.log(Dimensions.get('window').width);
     this.setState({
       users: users.data,
     });
@@ -74,37 +71,30 @@ class UsersPage extends React.Component<NavigationInjectedProps, State> {
     this.props.navigation.navigate('Profile', { user });
   }
 
-  renderItem = ({ item, index }) => {
+  renderItem = ({ item }) => {
     return (
-      <TouchableOpacity onPress={() => item && this.onUserPressed(item)}>
-        <Text style={styles.item}>{item.name}</Text>
-      </TouchableOpacity>
+      <NavigationButton onPress={() => item && this.onUserPressed(item)}>
+        <CardContent primary={item.username} secondary={item.name} />
+      </NavigationButton>
     );
   };
 
   render() {
     return (
-      <View style={styles.container}>
+      <Page>
         <FlatList
           data={this.state.users}
           keyExtractor={(item) => `${item.id}`}
           renderItem={this.renderItem}
+          style={styles.listContainer}
         />
-      </View>
+      </Page>
     );
   }
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
+  listContainer: {
+    paddingTop: 20,
   },
 });
 

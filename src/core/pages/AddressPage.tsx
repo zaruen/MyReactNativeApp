@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
+import Page from '@core/components/atoms/Page';
 
 class AddressPage extends React.Component<NavigationInjectedProps> {
   static navigationOptions = ({ navigation }) => {
@@ -11,9 +12,9 @@ class AddressPage extends React.Component<NavigationInjectedProps> {
 
   render() {
     return (
-      <View>
+      <Page>
         <Text>Address</Text>
-      </View>
+      </Page>
     );
   }
 }

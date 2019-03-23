@@ -12,6 +12,8 @@ import AddressPage from './AddressPage';
 import AlbumsPage from './AlbumsPage';
 import PostsPage from './PostsPage';
 import TodosPage from './TodosPage';
+import AlbumPage from './AlbumPage';
+import PostPage from './PostPage';
 
 class RootNavigator extends React.Component {
   render() {
@@ -38,6 +40,8 @@ class RootNavigator extends React.Component {
         Albums: { screen: AlbumsPage },
         Posts: { screen: PostsPage },
         Todos: { screen: TodosPage },
+        Album: { screen: AlbumPage },
+        Post: { screen: PostPage },
       },
       {
         initialRouteName: 'Users',

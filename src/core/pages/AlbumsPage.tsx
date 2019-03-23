@@ -1,20 +1,28 @@
 import React from 'react';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  FlatList,
-  StyleSheet,
-} from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import Axios from 'axios';
+import Page from '@core/components/atoms/Page';
+import { User } from './UsersPage';
+import Loading from '@core/components/atoms/Loading';
+import NavigationButton from '@core/components/atoms/NavigationButton';
+
+export interface Album {
+  userId: number;
+  id: number;
+  title: string;
+}
 
 interface State {
-  albums: any[];
+  albums: Album[];
+  user: User;
 }
 
 class AlbumsPage extends React.Component<NavigationInjectedProps, State> {
-  state = { albums: [] };
+  state = {
+    albums: [],
+    user: this.props.navigation.getParam('user'),
+  };
 
   static navigationOptions = ({ navigation }) => {
     return {
@@ -35,37 +43,41 @@ class AlbumsPage extends React.Component<NavigationInjectedProps, State> {
     });
   }
 
-  renderItem = ({ item, index }) => {
+  renderItem = ({ item }) => {
     return (
-      <TouchableOpacity onPress={() => {}}>
-        <Text style={styles.item}>{item.id}</Text>
-      </TouchableOpacity>
+      <NavigationButton
+        onPress={() =>
+          this.props.navigation.navigate('Album', {
+            album: item,
+            user: this.state.user,
+          })
+        }
+        text={item.title}
+      />
     );
   };
 
   render() {
     return (
-      <View style={styles.container}>
-        <FlatList
-          data={this.state.albums}
-          keyExtractor={(item) => `${item.id}`}
-          renderItem={this.renderItem}
-        />
-      </View>
+      <Page>
+        {this.state.albums.length > 0 ? (
+          <FlatList
+            data={this.state.albums}
+            keyExtractor={(item) => `${item.id}`}
+            renderItem={this.renderItem}
+            style={styles.listContainer}
+          />
+        ) : (
+          <Loading />
+        )}
+      </Page>
     );
   }
 }
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
+  listContainer: {
+    paddingTop: 20,
   },
 });
 

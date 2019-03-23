@@ -6,11 +6,13 @@
 
 function loadStories() {
   require('../components/Hello.stories');
+  require('../components/atoms/Card.stories');
   
 }
 
 const stories = [
   '../components/Hello.stories',
+  '../components/atoms/Card.stories',
   
 ];
 

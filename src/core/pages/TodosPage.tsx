@@ -1,20 +1,34 @@
 import React from 'react';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  FlatList,
-  StyleSheet,
-} from 'react-native';
+import { SectionList } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import Axios from 'axios';
+import Page from '@core/components/atoms/Page';
+import { User } from './UsersPage';
+import NavigationButton from '@core/components/atoms/NavigationButton';
+import { BASE_URL, COLORS } from '../constants';
+import Loading from '@core/components/atoms/Loading';
+import ListHeader from '@core/components/atoms/ListHeader';
 
 interface State {
-  todos: any[];
+  todo: Todo[];
+  done: Todo[];
+  user: User;
+}
+
+interface Todo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
 }
 
 class TodosPage extends React.Component<NavigationInjectedProps, State> {
-  state = { todos: [] };
+  state = {
+    todo: [],
+    done: [],
+    user: this.props.navigation.getParam('user'),
+  };
+
   static navigationOptions = ({ navigation }) => {
     return {
       title: `${navigation.getParam('user').username}'s todos`,
@@ -22,50 +36,48 @@ class TodosPage extends React.Component<NavigationInjectedProps, State> {
   };
 
   async componentWillMount() {
-    const userId = this.props.navigation.getParam('user').id;
-    const url = `https://jsonplaceholder.typicode.com/todos?userId=${userId}`;
+    const url = `${BASE_URL}todos?userId=${this.state.user.id}`;
     const todos = await Axios({
       method: 'GET',
       url,
     });
 
     this.setState({
-      todos: todos.data,
+      todo: todos.data.filter((t) => !t.completed),
+      done: todos.data.filter((t) => t.completed),
     });
   }
 
-  renderItem = ({ item, index }) => {
-    return (
-      <TouchableOpacity onPress={() => {}}>
-        <Text style={styles.item}>{item.id}</Text>
-      </TouchableOpacity>
-    );
-  };
+  renderItem = ({ item }) => (
+    <NavigationButton
+      color={item.completed ? COLORS.purple : COLORS.pink}
+      text={item.title}
+    />
+  );
+
+  renderSectionHeader = (title) => <ListHeader title={title} />;
 
   render() {
     return (
-      <View style={styles.container}>
-        <FlatList
-          data={this.state.todos}
-          keyExtractor={(item) => `${item.id}`}
-          renderItem={this.renderItem}
-        />
-      </View>
+      <Page>
+        {this.state.todo.length > 0 ? (
+          <SectionList
+            renderItem={this.renderItem}
+            renderSectionHeader={({ section: { title } }) =>
+              this.renderSectionHeader(title)
+            }
+            sections={[
+              { title: 'Todo', data: this.state.todo },
+              { title: 'Done', data: this.state.done },
+            ]}
+            keyExtractor={(item, index) => item + index}
+          />
+        ) : (
+          <Loading />
+        )}
+      </Page>
     );
   }
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
-  },
-});
 
 export default TodosPage;
