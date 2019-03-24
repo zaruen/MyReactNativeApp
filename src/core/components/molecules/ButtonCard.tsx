@@ -35,7 +35,7 @@ const ButtonCard: React.SFC<Props> = ({
         <View
           style={[
             styles.buttonBase,
-            { backgroundColor: color ? color : COLORS.purple },
+            { backgroundColor: color ? color : COLORS.primary.tone1 },
             card ? styles.buttonCard : styles.button,
           ]}
         >
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     maxWidth: 25,
   },
   buttonText: {
-    color: '#fff',
+    color: COLORS.white,
     fontWeight: 'bold',
   },
   containerBase: {

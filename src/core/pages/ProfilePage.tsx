@@ -41,19 +41,19 @@ class ProfilePage extends React.Component<NavigationInjectedProps> {
 
         <ButtonCard
           onPress={() => this.props.navigation.navigate('Address', { user })}
-          color={COLORS.pink}
+          color={COLORS.primary.tone4}
           title={'Address'}
         />
 
         <ButtonCard
           onPress={() => this.props.navigation.navigate('Posts', { user })}
-          color={COLORS.pinkPurple}
+          color={COLORS.primary.tone3}
           title={'Posts'}
         />
 
         <ButtonCard
           onPress={() => this.props.navigation.navigate('Albums', { user })}
-          color={COLORS.purplePink}
+          color={COLORS.primary.tone2}
           title={'Albums'}
         />
 
@@ -69,7 +69,7 @@ class ProfilePage extends React.Component<NavigationInjectedProps> {
 const styles = StyleSheet.create({
   email: {
     fontSize: FONT_SIZES.medium,
-    color: COLORS.pink,
+    color: COLORS.primary.tone4,
   },
 });
 

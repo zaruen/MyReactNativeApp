@@ -48,15 +48,15 @@ class RootNavigator extends React.Component {
         initialRouteName: 'Users',
         defaultNavigationOptions: {
           headerStyle: {
-            backgroundColor: COLORS.darkBackground,
+            backgroundColor: COLORS.secondBackground,
           },
           headerTitleStyle: {
             color: COLORS.white,
           },
           headerBackTitleStyle: {
-            color: COLORS.pink,
+            color: COLORS.primary.tone4,
           },
-          headerTintColor: COLORS.pink,
+          headerTintColor: COLORS.primary.tone4,
         },
       },
     );

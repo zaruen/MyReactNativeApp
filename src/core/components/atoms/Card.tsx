@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { COLORS } from '../../constants';
 
 interface Props {
   height?: number;
@@ -9,7 +10,7 @@ interface Props {
 const Card: React.SFC<Props> = ({ children, height }) => (
   <View style={[styles.wrapper, { maxHeight: height, minHeight: height }]}>
     <LinearGradient
-      colors={['#515f81', '#323d63']}
+      colors={[COLORS.gradientStart, COLORS.gradientStop]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 0 }}
       style={styles.gradient}
@@ -23,8 +24,6 @@ const styles = StyleSheet.create({
   gradient: {
     flex: 1,
     borderRadius: 10,
-    backgroundColor: '#515f81',
-    shadowColor: '#000',
   },
   wrapper: {
     flex: 1,

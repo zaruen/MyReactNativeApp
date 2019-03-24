@@ -115,13 +115,13 @@ const styles = StyleSheet.create({
   commentContainer: {
     flex: 1,
     borderRadius: 10,
-    backgroundColor: COLORS.darkBackground,
+    backgroundColor: COLORS.secondBackground,
     padding: 20,
     marginBottom: 20,
   },
   comment: {
     fontSize: FONT_SIZES.small,
-    color: COLORS.textSecondary,
+    color: COLORS.textComment,
   },
   commentAuthorContainer: {
     flexDirection: 'row',
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   },
   commentAuthor: {
     fontSize: FONT_SIZES.extraSmall,
-    color: COLORS.pink,
+    color: COLORS.primary.tone4,
   },
 });
 

@@ -50,7 +50,7 @@ class TodosPage extends React.Component<NavigationInjectedProps, State> {
 
   renderItem = ({ item }) => (
     <ButtonCard
-      color={item.completed ? 'none' : COLORS.pink}
+      color={item.completed ? 'none' : COLORS.primary.tone4}
       title={item.title}
     />
   );

@@ -1,15 +1,20 @@
 export const BASE_URL = 'https://jsonplaceholder.typicode.com/';
 
 export const COLORS = {
-  purple: '#9280eb',
-  purplePink: '#b27cd8',
-  pinkPurple: '#d574c3',
-  pink: '#fc75b0',
-  textPrimary: '#bcc3dc',
-  textSecondary: '#7e88ab',
-  background: '#3e486c',
-  darkBackground: '#252b41',
+  primary: {
+    tone1: '#f6c789',
+    tone2: '#f2b35f',
+    tone3: '#f89133',
+    tone4: '#ff6a00',
+  },
+  textPrimary: '#fff',
+  textSecondary: '#f2b35f',
+  textComment: '#b2b3b6',
+  background: '#004d65',
+  secondBackground: '#016a89',
   white: '#fff',
+  gradientStart: '#004d65',
+  gradientStop: '#00374a',
 };
 
 export const FONT_SIZES = {
